@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package calculator;
+
+option java_package = "com.proto.calculator";
+option java_multiple_files = true;
+
+import "calculator/prime.proto";
+import "calculator/echo.proto";
+import "calculator/average.proto";
+import "calculator/maximum.proto";
+import "calculator/sqrt.proto";
+
+message CalcRequest {
+    int64 first_num = 1;
+    int64 second_num = 2;
+}
+
+
+message CalcResponse {
+    int64 result = 1;
+}
+
+service CalculatorService {
+    rpc calculate(CalcRequest) returns (CalcResponse);
+    rpc primeFactorize(PrimeRequest) returns (stream PrimeResponse);
+    rpc echoHelloNTimes(EchoRequest) returns (stream EchoResponse);
+    rpc average(stream AverageRequest) returns (AverageResponse);
+    rpc maximum(stream MaximumRequest) returns (stream MaximumResponse);
+    // Returns Status.INVALID if SqrtRequest.number is negative
+    rpc sqrt(SqrtRequest) returns (SqrtResponse);
+
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package calculator;
+
+option java_package = "com.proto.calculator";
+option java_multiple_files = true;
+
+
+message AverageRequest {
+  float first_num = 1;
+}
+
+
+message AverageResponse {
+  float result = 1;
+}
